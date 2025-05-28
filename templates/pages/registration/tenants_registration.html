@@ -1,8 +1,114 @@
 {% extends "layout/base.html" %}
 
-{% block 'title' %} Tenants Registration {% endblock 'title' %}
+{% block 'title' %} Tenants {% endblock 'title' %}
 
 {% block 'content' %}
 {% include "include/sidebar.html" %}
 
+<div class="p-2 sm:ml-64 mt-16 md:mt-16 border border-red-600">
+    <div >
+        <div class="flex justify-between border items-center border-red-600 md:mb-3">
+            <h1>tenant</h1>
+            <button onclick="openTenantModal()" class="bg-blue-300 text-white cursor-pointer px-4 py-1 rounded-r hover:bg-blue-400">New Tenant</button>
+        </div>
+    <form method="get" class="mb-4 flex justify-end">
+        <input type="text" name="search" value="#" placeholder="Search Tenants..." class=" w-full border rounded-l px-3 py-1 focus:outline-none">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded-r hover:bg-blue-700">Search</button>
+            <a href="#" class="ml-2 px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">Clear</a>
+    </form>
+
+    </div>
+</div>
+
+<!-- Modal Background -->
+<div id="tenantModal" class="fixed inset-0 bg-white/30 backdrop-blur-sm items-center justify-center hidden z-50 flex">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6">
+        
+        <!-- Modal Header -->
+        <div class="flex justify-between items-center border-b pb-2 mb-4">
+            <h3 class="text-xl font-semibold">Add Tenant</h3>
+            <button onclick="closeTenantModal()" 
+                    class="text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
+        </div>
+
+        <!-- Modal Form -->
+        <form method="POST" action="{% url 'tenants_registration' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" name="email" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <input type="text" name="phone_number" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Government ID</label>
+                    <input type="file" name="government_id" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                    <input type="date" name="date_of_birth" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Occupation</label>
+                    <input type="text" name="occupation" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Employer Name</label>
+                    <input type="text" name="employer_name" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Emergency Contact Name</label>
+                    <input type="text" name="emergency_contact_name" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Emergency Contact Number</label>
+                    <input type="text" name="emergency_contact_number" class="mt-1 block w-full border border-gray-300 rounded p-2" required>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">Address</label>
+                    <textarea name="address" rows="3" class="mt-1 block w-full border border-gray-300 rounded p-2" required></textarea>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="mt-6 flex justify-end space-x-2">
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">
+                    Save
+                </button>
+                <button type="button" onclick="closeTenantModal()" 
+                        class="bg-gray-300 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 {% endblock 'content' %}
+
+{% block 'scripts' %}
+<script>
+    function openTenantModal() {
+        document.getElementById('tenantModal').classList.remove('hidden');
+    }
+
+    function closeTenantModal() {
+        document.getElementById('tenantModal').classList.add('hidden');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('tenantModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeTenantModal();
+        }
+    });
+
+    // Update all close buttons to use the new function
+    document.querySelectorAll('[onclick*="tenantModal"]').forEach(button => {
+        button.onclick = closeTenantModal;
+    });
+</script>
+{% endblock 'scripts' %}

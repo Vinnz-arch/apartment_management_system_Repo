@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user'
+    'user',
+    'tenant'
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+# Media files (Uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_REDIRECT_URL = '/haewon/dashboard'
 LOGIN_URL = '/login'
