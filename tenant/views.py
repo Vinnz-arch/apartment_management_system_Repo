@@ -62,8 +62,10 @@ def tenants_registration(request):
     
     # Get all users with tenant role for display
     users = User.objects.filter(role__role_type='tenant')
+    tenants = Tenant.objects.select_related('user').all()
     context = {
-        'users': users
+        'users': users,
+        'tenants': tenants
     }
     return render(request, 'pages/registration/tenants_registration.html', context)
 

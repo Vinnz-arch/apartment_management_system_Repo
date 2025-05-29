@@ -24,12 +24,19 @@
             <thead class="text-xs text-left text-black bg-blue-600">
                 <tr>
                     <th class="px-6 py-3">Tenants Name</th>
+                    <th class="px-6 py-3">Date of Birth</th>
+                    <th class="px-6 py-3">Address</th>
+                    <th class="px-6 py-3">Email</th>
+                    <th class="px-6 py-3">Action</th>
                 </tr>
             </thead>
             <tbody class="text-xs text-black">
-                {% for user in users %}
+                {% for tenant in tenants %}
                 <tr>
-                    <td class="px-6 py-3">{{ user.full_name }}</td>
+                    <td class="px-6 py-3">{{ tenant.user.full_name }}</td>
+                    <td class="px-6 py-3">{{ tenant.date_of_birth }}</td>
+                    <td class="px-6 py-3">{{ tenant.address }}</td>
+                    <td class="px-6 py-3">{{ tenant.user.email }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
