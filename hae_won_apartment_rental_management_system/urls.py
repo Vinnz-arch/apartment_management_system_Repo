@@ -24,3 +24,6 @@ urlpatterns = [
     path('', include('user.urls')),
     path('', include('tenant.urls'))  # Include user app URLs
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
