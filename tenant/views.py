@@ -10,6 +10,11 @@ from django.core.files.storage import FileSystemStorage
 # Create your views here.
 
 
+def tenants_dashboard(request):
+    # This view can be used to display tenant-specific information
+    return render(request, 'pages/dashboard/tenants_dashboard.html')
+
+
 def tenants_registration(request):
     if request.method == 'POST':
         try:

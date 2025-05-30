@@ -1,0 +1,58 @@
+{% extends "layout/base.html" %}
+
+{% block 'title' %} Tenants Dashboard {% endblock 'title' %}
+
+{% block 'content' %}
+{% include "include/sidebar.html" %}
+<div class="p-2 sm:ml-64 mt-16 md:mt-16">
+    <div class="text-gray-800">
+        <div class="min-h-screen p-6x">
+            <header class="mb-8">
+              <h1 class="text-3xl font-bold text-gray-700">Apartment Management Dashboard</h1>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Total Tenants -->
+              <div class="bg-white rounded-2xl shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-2">Total Tenants</h2>
+                <p class="text-4xl font-bold text-blue-600">999</p>
+              </div>
+          
+              <!-- Total Available Units -->
+              <div class="bg-white rounded-2xl shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-2">Available Units</h2>
+                <p class="text-4xl font-bold text-green-500">876</p>
+              </div>
+          
+              <!-- Rent Collection Summary -->
+              <div class="bg-white rounded-2xl shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-2">Rent Collected</h2>
+                <p class="text-4xl font-bold text-purple-600">$24,000</p>
+                <p class="text-sm text-gray-500 mt-1">This month</p>
+              </div>
+          
+              <!-- Pending Applications -->
+              <div class="bg-white rounded-2xl shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-2">Pending Applications</h2>
+                <p class="text-4xl font-bold text-yellow-500">5</p>
+              </div>
+          
+              <!-- Maintenance Requests -->
+              <div class="bg-white rounded-2xl shadow-md p-6 col-span-1 md:col-span-2">
+                <h2 class="text-xl font-semibold mb-2">Maintenance Requests</h2>
+                <ul class="list-disc ml-5 space-y-2 text-gray-600">
+                  <li>Leaky faucet - Unit 302</li>
+                  <li>AC not working - Unit 208</li>
+                  <li>Broken window - Unit 105</li>
+                </ul>
+                <p class="text-sm text-gray-500 mt-2">Total requests: 7 | Open: 3 | Closed: 4</p>
+              </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+    
+
+
+{% endblock 'content' %}

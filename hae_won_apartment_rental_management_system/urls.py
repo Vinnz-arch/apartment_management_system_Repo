@@ -22,7 +22,14 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('user.urls')),
-    path('', include('tenant.urls'))  # Include user app URLs
+    path('', include('tenant.urls')),
+    path('', include('rental_application.urls')),
+    path('', include('apartment.urls')),
+    path('', include('maintenance.urls')),
+    path('', include('lease.urls')),
+    path('', include('payment.urls'))
+    
+
 ]
 
 if settings.DEBUG:
